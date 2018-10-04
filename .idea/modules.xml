@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/renren-fast.iml" filepath="$PROJECT_DIR$/renren-fast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/callcenter-cms.iml" filepath="$PROJECT_DIR$/callcenter-cms.iml" />
     </modules>
   </component>
 </project>
