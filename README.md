@@ -45,5 +45,6 @@ renren-fast
 - 数据库连接池：Druid 1.0
 - 日志管理：SLF4J 1.7、Log4j
 - Swagger路径：http://localhost:8080/jktom/swagger/index.html
+- Swagger路径：http://localhost:8080/jktom/swagger-ui.html
 
 
