@@ -12,7 +12,7 @@
 
 **项目结构** 
 ```
-renren-fast
+callcenter-cms
 ├─db  项目SQL语句
 │
 ├─common 公共模块
@@ -24,7 +24,7 @@ renren-fast
 ├─config 配置信息
 │ 
 ├─modules 功能模块
-│  ├─cms API接口模块(APP调用)
+│  ├─cms API接口模块(cms调用)
 │  ├─oss 文件服务模块
 │  └─sys 权限模块
 │ 
