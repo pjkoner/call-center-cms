@@ -9,7 +9,7 @@ import java.util.Map;
  * 动态数据源
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018/8/19 1:03
+ * @date 2018/10/1 1:03
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();

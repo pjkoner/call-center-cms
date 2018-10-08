@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.AutodialerTimerangeDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.jktom.modules.cms.entity.AutodialerTimerangeEntity" id="autodialerTimerangeMap">
+        <result property="uuid" column="uuid"/>
+        <result property="beginDatetime" column="begin_datetime"/>
+        <result property="endDatetime" column="end_datetime"/>
+        <result property="groupUuid" column="group_uuid"/>
+    </resultMap>
+
+
+</mapper>

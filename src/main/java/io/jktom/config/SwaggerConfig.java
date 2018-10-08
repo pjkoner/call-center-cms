@@ -46,9 +46,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("人人开源")
-            .description("renren-fast文档")
-            .termsOfServiceUrl("http://www.renren.io")
+            .title("浙江金科汤姆猫")
+            .description("前后端对应文档")
+            .termsOfServiceUrl("http://www.jktom.io")
             .version("2.1")
             .build();
     }

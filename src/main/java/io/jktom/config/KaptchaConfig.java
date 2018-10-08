@@ -13,7 +13,7 @@ import java.util.Properties;
  *
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2017-04-20 19:22
+ * @date 2017-10-04 19:22
  */
 @Configuration
 public class KaptchaConfig {

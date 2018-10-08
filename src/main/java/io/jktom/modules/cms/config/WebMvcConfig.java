@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2017-04-20 22:30
+ * @date 2017-10-04 22:30
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {

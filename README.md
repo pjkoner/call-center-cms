@@ -44,6 +44,6 @@ renren-fast
 - 定时器：Quartz 2.3
 - 数据库连接池：Druid 1.0
 - 日志管理：SLF4J 1.7、Log4j
-- Swagger路径：http://localhost:8080/renren-fast/swagger/index.html
+- Swagger路径：http://localhost:8080/jktom/swagger/index.html
 
 

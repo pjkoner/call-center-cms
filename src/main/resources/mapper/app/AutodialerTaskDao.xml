@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.AutodialerTaskDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.jktom.modules.cms.entity.AutodialerTaskEntity" id="autodialerTaskMap">
+        <result property="uuid" column="uuid"/>
+        <result property="name" column="name"/>
+        <result property="version" column="version"/>
+        <result property="createDatetime" column="create_datetime"/>
+        <result property="alterDatetime" column="alter_datetime"/>
+        <result property="start" column="start"/>
+        <result property="maximumcall" column="maximumcall"/>
+        <result property="callPerSecond" column="call_per_second"/>
+        <result property="callLimit" column="call_limit"/>
+        <result property="callLimitCycle" column="call_limit_cycle"/>
+        <result property="callPauseSecond" column="call_pause_second"/>
+        <result property="recycleLimit" column="recycle_limit"/>
+        <result property="cacheNumberCount" column="cache_number_count"/>
+        <result property="randomAssignmentNumber" column="random_assignment_number"/>
+        <result property="disableDialTimegroup" column="disable_dial_timegroup"/>
+        <result property="destinationExtension" column="destination_extension"/>
+        <result property="destinationDialplan" column="destination_dialplan"/>
+        <result property="destinationContext" column="destination_context"/>
+        <result property="schedulingPolicyRatio" column="scheduling_policy_ratio"/>
+        <result property="schedulingQueue" column="scheduling_queue"/>
+        <result property="dialFormat" column="dial_format"/>
+        <result property="domain" column="domain"/>
+        <result property="remark" column="remark"/>
+        <result property="callNotifyType" column="call_notify_type"/>
+        <result property="callNotifyUrl" column="call_notify_url"/>
+        <result property="originateVariables" column="originate_variables"/>
+        <result property="originateTimeout" column="_originate_timeout"/>
+        <result property="originationCallerIdNumber" column="_origination_caller_id_number"/>
+        <result property="ignoreEarlyMedia" column="_ignore_early_media"/>
+    </resultMap>
+
+
+</mapper>

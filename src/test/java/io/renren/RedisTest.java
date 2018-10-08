@@ -1,4 +1,4 @@
-package io.jktom;
+package io.renren;
 
 import io.jktom.common.utils.RedisUtils;
 import io.jktom.modules.sys.entity.SysUserEntity;

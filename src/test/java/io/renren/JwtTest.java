@@ -1,4 +1,4 @@
-package io.jktom;
+package io.renren;
 
 import io.jktom.modules.cms.utils.JwtUtils;
 import org.junit.Test;

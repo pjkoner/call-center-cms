@@ -2,7 +2,7 @@ package io.jktom;
 
 
 import io.jktom.modules.sys.entity.SysUserEntity;
-import io.jktom.service.DataSourceTestService;
+import io.renren.service.DataSourceTestService;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

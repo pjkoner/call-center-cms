@@ -21,10 +21,7 @@ import io.jktom.common.utils.ConfigConstant;
 import io.jktom.common.utils.Constant;
 import io.jktom.common.utils.SpringContextUtils;
 import io.jktom.modules.sys.service.SysConfigService;
-import io.jktom.common.utils.ConfigConstant;
-import io.jktom.common.utils.Constant;
-import io.jktom.common.utils.SpringContextUtils;
-import io.jktom.modules.sys.service.SysConfigService;
+
 
 /**
  * 文件上传Factory

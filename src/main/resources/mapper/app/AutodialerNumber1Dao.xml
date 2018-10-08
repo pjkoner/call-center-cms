@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.AutodialerNumber1Dao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.jktom.modules.cms.entity.AutodialerNumber1Entity" id="autodialerNumber1Map">
+        <result property="id" column="id"/>
+        <result property="number" column="number"/>
+        <result property="state" column="state"/>
+        <result property="description" column="description"/>
+        <result property="recycle" column="recycle"/>
+        <result property="callid" column="callid"/>
+        <result property="calleridnumber" column="calleridnumber"/>
+        <result property="calldate" column="calldate"/>
+        <result property="bill" column="bill"/>
+        <result property="duration" column="duration"/>
+        <result property="hangupcause" column="hangupcause"/>
+        <result property="hangupdate" column="hangupdate"/>
+        <result property="answerdate" column="answerdate"/>
+        <result property="recordfile" column="recordfile"/>
+        <result property="status" column="status"/>
+        <result property="bridgeCallid" column="bridge_callid"/>
+        <result property="bridgeNumber" column="bridge_number"/>
+        <result property="bridgeCalldate" column="bridge_calldate"/>
+        <result property="bridgeAnswerdate" column="bridge_answerdate"/>
+    </resultMap>
+
+
+</mapper>
