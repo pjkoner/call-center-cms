@@ -1,15 +1,19 @@
 package io.jktom.modules.sys.oauth2;
 
+import io.jktom.common.exception.RRException;
+import io.jktom.modules.cms.utils.JwtUtils;
 import io.jktom.modules.sys.entity.SysUserEntity;
-import io.jktom.modules.sys.entity.SysUserEntity;
+
 import io.jktom.modules.sys.entity.SysUserTokenEntity;
 import io.jktom.modules.sys.service.ShiroService;
+import io.jsonwebtoken.Claims;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -25,6 +29,9 @@ import java.util.Set;
 public class OAuth2Realm extends AuthorizingRealm {
     @Autowired
     private ShiroService shiroService;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -60,6 +67,15 @@ public class OAuth2Realm extends AuthorizingRealm {
         if(tokenEntity == null || tokenEntity.getExpireTime().getTime() < System.currentTimeMillis()){
             throw new IncorrectCredentialsException("token失效，请重新登录");
         }
+
+        //整合JWT 验证token
+        Claims claims = jwtUtils.getClaimByToken(accessToken);
+        if(claims == null || jwtUtils.isTokenExpired(claims.getExpiration())){
+            throw new RRException(jwtUtils.getHeader() + "失效，请重新登录", HttpStatus.UNAUTHORIZED.value());
+        }
+
+        //从JWT解析获取userId
+        //Long userId = Long.parseLong(claims.getSubject());
 
         //查询用户信息
         SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());

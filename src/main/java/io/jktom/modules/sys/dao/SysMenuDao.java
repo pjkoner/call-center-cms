@@ -19,6 +19,7 @@ package io.jktom.modules.sys.dao;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import io.jktom.modules.sys.entity.SysMenuEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ import java.util.List;
  * @date 2018年10月4日 上午9:33:01
  */
 @Mapper
+@Component
 public interface SysMenuDao extends BaseMapper<SysMenuEntity> {
 	
 	/**

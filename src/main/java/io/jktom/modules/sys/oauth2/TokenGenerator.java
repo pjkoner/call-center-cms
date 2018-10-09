@@ -1,7 +1,7 @@
 package io.jktom.modules.sys.oauth2;
 
 import io.jktom.common.exception.RRException;
-import io.jktom.common.exception.RRException;
+import io.jktom.modules.cms.utils.JwtUtils;
 
 import java.security.MessageDigest;
 import java.util.UUID;
@@ -15,9 +15,13 @@ import java.util.UUID;
  */
 public class TokenGenerator {
 
-    public static String generateValue() {
-        return generateValue(UUID.randomUUID().toString());
+    public static String generateValue(long userId) {
+
+        return new JwtUtils().generateToken(userId);
+        //return generateValue(UUID.randomUUID().toString());
     }
+
+    //使用Spring security MD5生成token。
 
     private static final char[] hexCode = "0123456789abcdef".toCharArray();
 

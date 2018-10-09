@@ -2,7 +2,7 @@ package io.jktom.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import io.jktom.common.utils.R;
-import io.jktom.common.utils.R;
+
 import io.jktom.modules.sys.dao.SysUserTokenDao;
 import io.jktom.modules.sys.entity.SysUserTokenEntity;
 import io.jktom.modules.sys.oauth2.TokenGenerator;
@@ -21,7 +21,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 	@Override
 	public R createToken(long userId) {
 		//生成一个token
-		String token = TokenGenerator.generateValue();
+		String token = TokenGenerator.generateValue(userId);
 
 		//当前时间
 		Date now = new Date();
@@ -56,7 +56,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 	@Override
 	public void logout(long userId) {
 		//生成一个token
-		String token = TokenGenerator.generateValue();
+		String token = TokenGenerator.generateValue(userId);
 
 		//修改token
 		SysUserTokenEntity tokenEntity = new SysUserTokenEntity();

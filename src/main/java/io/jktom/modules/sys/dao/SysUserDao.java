@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import io.jktom.modules.sys.entity.SysUserEntity;
 import io.jktom.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @date 2018年10月4日 上午9:34:11
  */
 @Mapper
+@Component
 public interface SysUserDao extends BaseMapper<SysUserEntity> {
 	
 	/**

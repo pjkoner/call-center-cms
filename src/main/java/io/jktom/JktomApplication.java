@@ -9,17 +9,21 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Import;
 
-
+/**
+ * @author pjk
+ * @email pjk2018@gmail.com
+ * @date 2018年9月30日 上午9:46:09
+ */
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @Import({DynamicDataSourceConfig.class})
-public class RenrenApplication extends SpringBootServletInitializer {
+public class JktomApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RenrenApplication.class, args);
+		SpringApplication.run(JktomApplication.class, args);
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(RenrenApplication.class);
+		return application.sources(JktomApplication.class);
 	}
 }

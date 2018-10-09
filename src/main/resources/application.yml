@@ -77,10 +77,9 @@ renren:
     open: false
   shiro:
     redis: false
-  # APP模块，是通过jwt认证的，如果要使用APP模块，则需要修改【加密秘钥】
   jwt:
     # 加密秘钥
-    secret: f4e2e52034348f86b67cde581c0f9eb5[www.jktom.io]
+    secret: 724a44f2d0d072c93b03d913020cb97bbd6ab9e652fed3daab0081b405dfdc2d[www.jktom.io]
     # token有效时长，7天，单位秒
     expire: 604800
     header: token
