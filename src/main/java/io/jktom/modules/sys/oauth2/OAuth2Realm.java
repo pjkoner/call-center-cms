@@ -62,11 +62,11 @@ public class OAuth2Realm extends AuthorizingRealm {
         String accessToken = (String) token.getPrincipal();
 
         //根据accessToken，查询用户信息
-        SysUserTokenEntity tokenEntity = shiroService.queryByToken(accessToken);
+        //SysUserTokenEntity tokenEntity = shiroService.queryByToken(accessToken);
         //token失效
-        if(tokenEntity == null || tokenEntity.getExpireTime().getTime() < System.currentTimeMillis()){
-            throw new IncorrectCredentialsException("token失效，请重新登录");
-        }
+//        if(tokenEntity == null || tokenEntity.getExpireTime().getTime() < System.currentTimeMillis()){
+//            throw new IncorrectCredentialsException("token失效，请重新登录");
+//        }
 
         //整合JWT 验证token
         Claims claims = jwtUtils.getClaimByToken(accessToken);
@@ -75,10 +75,11 @@ public class OAuth2Realm extends AuthorizingRealm {
         }
 
         //从JWT解析获取userId
-        //Long userId = Long.parseLong(claims.getSubject());
+        Long userId = Long.parseLong(claims.getSubject());
 
         //查询用户信息
-        SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
+        //SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
+        SysUserEntity user = shiroService.queryUser(userId);
         //账号锁定
         if(user.getStatus() == 0){
             throw new LockedAccountException("账号已被锁定,请联系管理员");
