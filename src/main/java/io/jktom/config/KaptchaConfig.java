@@ -22,8 +22,9 @@ public class KaptchaConfig {
     public DefaultKaptcha producer() {
         Properties properties = new Properties();
         properties.put("kaptcha.border", "no");
-        properties.put("kaptcha.textproducer.font.color", "black");
+        properties.put("kaptcha.textproducer.font.color", "red");
         properties.put("kaptcha.textproducer.char.space", "5");
+
         Config config = new Config(properties);
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         defaultKaptcha.setConfig(config);

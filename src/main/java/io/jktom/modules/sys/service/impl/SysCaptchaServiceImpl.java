@@ -71,7 +71,7 @@ public class SysCaptchaServiceImpl extends ServiceImpl<SysCaptchaDao, SysCaptcha
         }
 
         //删除验证码
-        this.deleteById(uuid);
+       // this.deleteById(uuid);
 
         if(captchaEntity.getCode().equalsIgnoreCase(code) && captchaEntity.getExpireTime().getTime() >= System.currentTimeMillis()){
             return true;

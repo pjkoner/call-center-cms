@@ -40,7 +40,7 @@ public class AppTestController {
 
     @GetMapping("notToken")
     @ApiOperation("忽略Token验证测试")
-    public R notToken(){
+    public R notToken(@LoginUser UserEntity user){
         return R.ok().put("msg", "无需token也能访问。。。");
     }
 

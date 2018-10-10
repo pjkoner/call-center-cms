@@ -18,6 +18,7 @@ public class TokenGenerator {
     public static String generateValue(long userId) {
 
         return new JwtUtils().generateToken(userId);
+
         //return generateValue(UUID.randomUUID().toString());
     }
 

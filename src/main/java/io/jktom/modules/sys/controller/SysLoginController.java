@@ -7,13 +7,12 @@ import io.jktom.modules.sys.form.SysLoginForm;
 import io.jktom.modules.sys.service.SysCaptchaService;
 import io.jktom.modules.sys.service.SysUserService;
 import io.jktom.modules.sys.service.SysUserTokenService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -31,6 +30,7 @@ import java.util.Map;
  * @date 2018年10月4日 下午1:15:31
  */
 @RestController
+@Api("登陆注册")
 public class SysLoginController extends AbstractController {
 	@Autowired
 	private SysUserService sysUserService;
@@ -42,8 +42,9 @@ public class SysLoginController extends AbstractController {
 	/**
 	 * 验证码
 	 */
+	@ApiOperation("获取验证码图片")
 	@GetMapping("captcha.jpg")
-	public void captcha(HttpServletResponse response, String uuid)throws ServletException, IOException {
+	public void captcha(HttpServletResponse response,@RequestParam("uuid") String uuid)throws ServletException, IOException {
 		response.setHeader("Cache-Control", "no-store, no-cache");
 		response.setContentType("image/jpeg");
 
@@ -58,6 +59,7 @@ public class SysLoginController extends AbstractController {
 	/**
 	 * 登录
 	 */
+	@ApiOperation("登陆入口")
 	@PostMapping("/sys/login")
 	public Map<String, Object> login(@RequestBody SysLoginForm form)throws IOException {
 		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
@@ -87,10 +89,34 @@ public class SysLoginController extends AbstractController {
 	/**
 	 * 退出
 	 */
+	@ApiOperation("退出入口")
 	@PostMapping("/sys/logout")
 	public R logout() {
 		sysUserTokenService.logout(getUserId());
 		return R.ok();
 	}
+
+
+	/**
+	 * 注册
+	 */
+	@ApiOperation("注册入口")
+	@PostMapping("/sys/register")
+	public Map<String, Object> register(@RequestBody SysLoginForm form) throws IOException{
+
+		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
+		if(!captcha){
+			return R.error("验证码不正确");
+		}
+		SysUserEntity user = new SysUserEntity();
+
+		user.setPassword(form.getPassword());
+		user.setUsername(form.getUsername());
+		user.setCreateUserId(0L);
+		user.setStatus(1);
+		sysUserService.save(user);
+		return R.ok();
+	}
+
 	
 }

@@ -7,6 +7,7 @@ import io.jktom.common.utils.PageUtils;
 import io.jktom.common.utils.R;
 import io.jktom.modules.cms.entity.AutodialerLogEntity;
 import io.jktom.modules.cms.service.AutodialerLogService;
+import io.jktom.modules.sys.controller.AbstractController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("generator/autodialerlog")
-public class AutodialerLogController {
+public class AutodialerLogController extends AbstractController {
     @Autowired
     private AutodialerLogService autodialerLogService;
 
