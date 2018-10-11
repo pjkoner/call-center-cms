@@ -22,7 +22,6 @@ import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import io.jktom.common.exception.RRException;
-import io.jktom.common.exception.RRException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

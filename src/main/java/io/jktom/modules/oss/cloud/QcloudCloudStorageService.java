@@ -23,7 +23,6 @@ import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.request.UploadFileRequest;
 import com.qcloud.cos.sign.Credentials;
 import io.jktom.common.exception.RRException;
-import io.jktom.common.exception.RRException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

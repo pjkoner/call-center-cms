@@ -18,7 +18,6 @@ package io.jktom.modules.oss.cloud;
 
 import com.aliyun.oss.OSSClient;
 import io.jktom.common.exception.RRException;
-import io.jktom.common.exception.RRException;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

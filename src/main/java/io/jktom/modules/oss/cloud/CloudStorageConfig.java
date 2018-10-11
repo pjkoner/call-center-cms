@@ -20,9 +20,7 @@ package io.jktom.modules.oss.cloud;
 import io.jktom.common.validator.group.AliyunGroup;
 import io.jktom.common.validator.group.QcloudGroup;
 import io.jktom.common.validator.group.QiniuGroup;
-import io.jktom.common.validator.group.AliyunGroup;
-import io.jktom.common.validator.group.QcloudGroup;
-import io.jktom.common.validator.group.QiniuGroup;
+
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
