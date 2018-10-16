@@ -1,5 +1,8 @@
 package io.jktom.modules.cms.service.impl;
 
+import io.jktom.common.utils.R;
+import io.jktom.modules.cms.form.SpeechTechniqueForm;
+import io.jktom.modules.sys.entity.SysUserEntity;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -24,6 +27,19 @@ public class BizSpeechTechniqueServiceImpl extends ServiceImpl<BizSpeechTechniqu
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public R saveSpeechTechnique(SysUserEntity user,SpeechTechniqueForm speechForm) {
+
+        BizSpeechTechniqueEntity bizSpeechTechnique = new BizSpeechTechniqueEntity();
+
+        bizSpeechTechnique.setSpeechName(speechForm.getSpeechName());
+        bizSpeechTechnique.setCompanyId(user.getUserId());
+        bizSpeechTechnique.setStatus(0);
+        this.insert(bizSpeechTechnique);
+
+        return R.ok();
     }
 
 }

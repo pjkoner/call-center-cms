@@ -33,7 +33,7 @@ public class BizSpeechTechniqueEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer companyId;
+	private Long companyId;
 	/**
 	 * 
 	 */
@@ -91,18 +91,16 @@ public class BizSpeechTechniqueEntity implements Serializable {
 	public Integer getStatus() {
 		return status;
 	}
-	/**
-	 * 设置：
-	 */
-	public void setCompanyId(Integer companyId) {
-		this.companyId = companyId;
-	}
-	/**
-	 * 获取：
-	 */
-	public Integer getCompanyId() {
+
+
+	public Long getCompanyId() {
 		return companyId;
 	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
+
 	/**
 	 * 设置：
 	 */

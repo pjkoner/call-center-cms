@@ -17,7 +17,7 @@ public class R extends HashMap<String, Object> {
 	
 	public R() {
 		put("success","success");
-		put("code", 0);
+		put("code", 200);
 		put("msg", "");
 
 	}

@@ -3,6 +3,9 @@ package io.jktom.modules.cms.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import io.jktom.common.validator.ValidatorUtils;
+import io.jktom.modules.cms.form.SpeechTechniqueForm;
+import io.jktom.modules.sys.controller.AbstractController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +29,8 @@ import io.jktom.common.utils.R;
  * @date 2018-10-16 17:30:19
  */
 @RestController
-@RequestMapping("cms/bizSpeechTechnique")
-public class BizSpeechTechniqueController {
+@RequestMapping("cms/speechTechnique")
+public class BizSpeechTechniqueController extends AbstractController {
     @Autowired
     private BizSpeechTechniqueService bizSpeechTechniqueService;
 
@@ -56,10 +59,14 @@ public class BizSpeechTechniqueController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody BizSpeechTechniqueEntity bizSpeechTechnique){
-			bizSpeechTechniqueService.insert(bizSpeechTechnique);
+    public R save(@RequestBody SpeechTechniqueForm speechTechniqueForm){
 
-        return R.ok();
+        //表单校验
+        ValidatorUtils.validateEntity(speechTechniqueForm);
+
+        R r = this.bizSpeechTechniqueService.saveSpeechTechnique(getUser(),speechTechniqueForm);
+
+        return r;
     }
 
     /**
