@@ -36,7 +36,6 @@ public class AutodialerTaskController {
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("generator:autodialertask:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = autodialerTaskService.queryPage(params);
 
@@ -48,7 +47,6 @@ public class AutodialerTaskController {
      * 信息
      */
     @RequestMapping("/info/{uuid}")
-    @RequiresPermissions("generator:autodialertask:info")
     public R info(@PathVariable("uuid") String uuid){
 			AutodialerTaskEntity autodialerTask = autodialerTaskService.selectById(uuid);
 
@@ -59,7 +57,6 @@ public class AutodialerTaskController {
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("generator:autodialertask:save")
     public R save(@RequestBody AutodialerTaskEntity autodialerTask){
 			autodialerTaskService.insert(autodialerTask);
 
@@ -70,7 +67,6 @@ public class AutodialerTaskController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("generator:autodialertask:update")
     public R update(@RequestBody AutodialerTaskEntity autodialerTask){
 			autodialerTaskService.updateById(autodialerTask);
 
@@ -81,7 +77,6 @@ public class AutodialerTaskController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("generator:autodialertask:delete")
     public R delete(@RequestBody String[] uuids){
 			autodialerTaskService.deleteBatchIds(Arrays.asList(uuids));
 

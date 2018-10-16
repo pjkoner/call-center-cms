@@ -3,11 +3,6 @@ package io.jktom.modules.cms.controller;
 import java.util.Arrays;
 import java.util.Map;
 
-import io.jktom.common.utils.PageUtils;
-import io.jktom.common.utils.R;
-import io.jktom.modules.cms.entity.AutodialerLogEntity;
-import io.jktom.modules.cms.service.AutodialerLogService;
-import io.jktom.modules.sys.controller.AbstractController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.jktom.modules.cms.entity.BizCompanyInfoEntity;
+import io.jktom.modules.cms.service.BizCompanyInfoService;
+import io.jktom.common.utils.PageUtils;
+import io.jktom.common.utils.R;
 
 
 
@@ -24,20 +23,21 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018-10-08 10:03:15
+ * @date 2018-10-16 17:30:19
  */
 @RestController
-@RequestMapping("generator/autodialerlog")
-public class AutodialerLogController extends AbstractController {
+@RequestMapping("cms/bizcompanyinfo")
+public class BizCompanyInfoController {
     @Autowired
-    private AutodialerLogService autodialerLogService;
+    private BizCompanyInfoService bizCompanyInfoService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
+
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = autodialerLogService.queryPage(params);
+        PageUtils page = bizCompanyInfoService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -46,19 +46,20 @@ public class AutodialerLogController extends AbstractController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{uuid}")
-    public R info(@PathVariable("uuid") String uuid){
-			AutodialerLogEntity autodialerLog = autodialerLogService.selectById(uuid);
+    @RequestMapping("/info/{companyId}")
 
-        return R.ok().put("autodialerLog", autodialerLog);
+    public R info(@PathVariable("companyId") Integer companyId){
+			BizCompanyInfoEntity bizCompanyInfo = bizCompanyInfoService.selectById(companyId);
+
+        return R.ok().put("bizCompanyInfo", bizCompanyInfo);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody AutodialerLogEntity autodialerLog){
-			autodialerLogService.insert(autodialerLog);
+    public R save(@RequestBody BizCompanyInfoEntity bizCompanyInfo){
+			bizCompanyInfoService.insert(bizCompanyInfo);
 
         return R.ok();
     }
@@ -67,8 +68,8 @@ public class AutodialerLogController extends AbstractController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody AutodialerLogEntity autodialerLog){
-			autodialerLogService.updateById(autodialerLog);
+    public R update(@RequestBody BizCompanyInfoEntity bizCompanyInfo){
+			bizCompanyInfoService.updateById(bizCompanyInfo);
 
         return R.ok();
     }
@@ -77,8 +78,8 @@ public class AutodialerLogController extends AbstractController {
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(@RequestBody String[] uuids){
-			autodialerLogService.deleteBatchIds(Arrays.asList(uuids));
+    public R delete(@RequestBody Integer[] companyIds){
+			bizCompanyInfoService.deleteBatchIds(Arrays.asList(companyIds));
 
         return R.ok();
     }

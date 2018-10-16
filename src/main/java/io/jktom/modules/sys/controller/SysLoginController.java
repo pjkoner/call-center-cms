@@ -62,10 +62,11 @@ public class SysLoginController extends AbstractController {
 	@ApiOperation("登陆入口")
 	@PostMapping("/sys/login")
 	public Map<String, Object> login(@RequestBody SysLoginForm form)throws IOException {
-		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
-		if(!captcha){
-			return R.error("验证码不正确");
-		}
+
+//		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
+//		if(!captcha){
+//			return R.error("验证码不正确");
+//		}
 
 		//用户信息
 		SysUserEntity user = sysUserService.queryByUserName(form.getUsername());
@@ -92,7 +93,9 @@ public class SysLoginController extends AbstractController {
 	@ApiOperation("退出入口")
 	@PostMapping("/sys/logout")
 	public R logout() {
-		sysUserTokenService.logout(getUserId());
+		//sysUserTokenService.logout(getUserId());
+
+
 		return R.ok();
 	}
 
@@ -104,10 +107,11 @@ public class SysLoginController extends AbstractController {
 	@PostMapping("/sys/register")
 	public Map<String, Object> register(@RequestBody SysLoginForm form) throws IOException{
 
-		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
-		if(!captcha){
-			return R.error("验证码不正确");
-		}
+//		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
+//		if(!captcha){
+//			return R.error("验证码不正确");
+//		}
+
 		SysUserEntity user = new SysUserEntity();
 
 		user.setPassword(form.getPassword());

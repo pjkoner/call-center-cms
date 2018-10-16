@@ -35,7 +35,6 @@ public class AutodialerTimerangeController {
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("generator:autodialertimerange:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = autodialerTimerangeService.queryPage(params);
 
@@ -47,7 +46,6 @@ public class AutodialerTimerangeController {
      * 信息
      */
     @RequestMapping("/info/{uuid}")
-    @RequiresPermissions("generator:autodialertimerange:info")
     public R info(@PathVariable("uuid") String uuid){
 			AutodialerTimerangeEntity autodialerTimerange = autodialerTimerangeService.selectById(uuid);
 
@@ -58,7 +56,6 @@ public class AutodialerTimerangeController {
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("generator:autodialertimerange:save")
     public R save(@RequestBody AutodialerTimerangeEntity autodialerTimerange){
 			autodialerTimerangeService.insert(autodialerTimerange);
 
@@ -69,7 +66,6 @@ public class AutodialerTimerangeController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("generator:autodialertimerange:update")
     public R update(@RequestBody AutodialerTimerangeEntity autodialerTimerange){
 			autodialerTimerangeService.updateById(autodialerTimerange);
 
@@ -80,7 +76,6 @@ public class AutodialerTimerangeController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("generator:autodialertimerange:delete")
     public R delete(@RequestBody String[] uuids){
 			autodialerTimerangeService.deleteBatchIds(Arrays.asList(uuids));
 

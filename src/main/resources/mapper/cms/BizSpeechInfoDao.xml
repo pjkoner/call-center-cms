@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.jktom.modules.cms.dao.BizSpeechInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.jktom.modules.cms.entity.BizSpeechInfoEntity" id="bizSpeechInfoMap">
+        <result property="speechInfoId" column="speech_info_id"/>
+        <result property="speechId" column="speech_id"/>
+        <result property="serialNum" column="serial_num"/>
+        <result property="speechInfo" column="speech_info"/>
+        <result property="createId" column="create_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="isDelete" column="is_delete"/>
+    </resultMap>
+
+
+</mapper>
