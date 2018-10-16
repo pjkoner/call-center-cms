@@ -26,6 +26,7 @@ import io.jktom.common.utils.R;
  * @date 2018-10-16 17:30:19
  */
 @RestController
+@RequestMapping("cms/bizkonwledgeinfo")
 public class BizKonwledgeInfoController {
     @Autowired
     private BizKonwledgeInfoService bizKonwledgeInfoService;
