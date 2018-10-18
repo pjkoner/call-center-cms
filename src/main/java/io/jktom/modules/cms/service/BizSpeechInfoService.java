@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018-10-16 17:30:19
+ * @date 2018-10-18 11:08:29
  */
 public interface BizSpeechInfoService extends IService<BizSpeechInfoEntity> {
 

@@ -22,6 +22,9 @@ public class TokenGenerator {
         //return generateValue(UUID.randomUUID().toString());
     }
 
+
+
+
     //使用Spring security MD5生成token。
 
     private static final char[] hexCode = "0123456789abcdef".toCharArray();

@@ -3,7 +3,7 @@ package io.jktom.modules.cms.controller;
 import java.util.Arrays;
 import java.util.Map;
 
-import io.jktom.modules.cms.service.BizSpeechInfoService;
+import io.jktom.modules.cms.service.BizSpeechSenceService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.jktom.modules.cms.entity.BizSpeechInfoEntity;
+import io.jktom.modules.cms.entity.BizSpeechSenceEntity;
 import io.jktom.common.utils.PageUtils;
 import io.jktom.common.utils.R;
 
@@ -26,18 +26,18 @@ import io.jktom.common.utils.R;
  * @date 2018-10-18 11:08:29
  */
 @RestController
-@RequestMapping("cms/bizspeechinfo")
-public class BizSpeechInfoController {
+@RequestMapping("cms/bizspeechsence")
+public class BizSpeechSenceController {
     @Autowired
-    private BizSpeechInfoService bizSpeechInfoService;
+    private BizSpeechSenceService bizSpeechSenceService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("cms:bizspeechinfo:list")
+    @RequiresPermissions("cms:bizspeechsence:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = bizSpeechInfoService.queryPage(params);
+        PageUtils page = bizSpeechSenceService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -46,21 +46,21 @@ public class BizSpeechInfoController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{speechInfoId}")
-    @RequiresPermissions("cms:bizspeechinfo:info")
-    public R info(@PathVariable("speechInfoId") Long speechInfoId){
-			BizSpeechInfoEntity bizSpeechInfo = bizSpeechInfoService.selectById(speechInfoId);
+    @RequestMapping("/info/{senceId}")
+    @RequiresPermissions("cms:bizspeechsence:info")
+    public R info(@PathVariable("senceId") Long senceId){
+			BizSpeechSenceEntity bizSpeechSence = bizSpeechSenceService.selectById(senceId);
 
-        return R.ok().put("bizSpeechInfo", bizSpeechInfo);
+        return R.ok().put("bizSpeechSence", bizSpeechSence);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("cms:bizspeechinfo:save")
-    public R save(@RequestBody BizSpeechInfoEntity bizSpeechInfo){
-			bizSpeechInfoService.insert(bizSpeechInfo);
+    @RequiresPermissions("cms:bizspeechsence:save")
+    public R save(@RequestBody BizSpeechSenceEntity bizSpeechSence){
+			bizSpeechSenceService.insert(bizSpeechSence);
 
         return R.ok();
     }
@@ -69,9 +69,9 @@ public class BizSpeechInfoController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("cms:bizspeechinfo:update")
-    public R update(@RequestBody BizSpeechInfoEntity bizSpeechInfo){
-			bizSpeechInfoService.updateById(bizSpeechInfo);
+    @RequiresPermissions("cms:bizspeechsence:update")
+    public R update(@RequestBody BizSpeechSenceEntity bizSpeechSence){
+			bizSpeechSenceService.updateById(bizSpeechSence);
 
         return R.ok();
     }
@@ -80,9 +80,9 @@ public class BizSpeechInfoController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("cms:bizspeechinfo:delete")
-    public R delete(@RequestBody Long[] speechInfoIds){
-			bizSpeechInfoService.deleteBatchIds(Arrays.asList(speechInfoIds));
+    @RequiresPermissions("cms:bizspeechsence:delete")
+    public R delete(@RequestBody Long[] senceIds){
+			bizSpeechSenceService.deleteBatchIds(Arrays.asList(senceIds));
 
         return R.ok();
     }

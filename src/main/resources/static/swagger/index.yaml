@@ -43,25 +43,7 @@ paths:
             type: string
             required: true
 
-  /sys/login:
-    post:
-      tags:
-        - 用户登录
-      summary: 用户登录
-      produces:
-        - application/json
-      parameters:
-        - name: body
-          description: 管理员对象
-          in: body
-          type: string
-          schema:
-            $ref: '#/definitions/LoginForm'
-          required: true
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/Login'
+
 
   /sys/user/list:
     get:

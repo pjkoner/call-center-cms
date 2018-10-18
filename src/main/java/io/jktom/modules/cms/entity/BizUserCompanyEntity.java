@@ -11,7 +11,7 @@ import java.util.Date;
  * 
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018-10-16 17:30:19
+ * @date 2018-10-18 11:08:29
  */
 @TableName("biz_user_company")
 public class BizUserCompanyEntity implements Serializable {
@@ -21,15 +21,15 @@ public class BizUserCompanyEntity implements Serializable {
 	 * 主键
 	 */
 	@TableId
-	private Integer id;
+	private Long id;
 	/**
 	 * 
 	 */
-	private Integer companyId;
+	private Long companyId;
 	/**
 	 * 
 	 */
-	private Integer userId;
+	private Long userId;
 	/**
 	 * 
 	 */
@@ -50,37 +50,37 @@ public class BizUserCompanyEntity implements Serializable {
 	/**
 	 * 设置：主键
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	/**
 	 * 获取：主键
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 	/**
 	 * 设置：
 	 */
-	public void setCompanyId(Integer companyId) {
+	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getCompanyId() {
+	public Long getCompanyId() {
 		return companyId;
 	}
 	/**
 	 * 设置：
 	 */
-	public void setUserId(Integer userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 	/**

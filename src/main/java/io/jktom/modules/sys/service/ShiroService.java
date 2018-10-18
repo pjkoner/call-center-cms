@@ -18,8 +18,6 @@ public interface ShiroService {
      */
     Set<String> getUserPermissions(long userId);
 
-    SysUserTokenEntity queryByToken(String token);
-
     /**
      * 根据用户ID，查询用户
      * @param userId

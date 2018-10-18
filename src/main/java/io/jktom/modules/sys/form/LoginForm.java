@@ -14,10 +14,8 @@
  * the License.
  */
 
-package io.jktom.modules.cms.form;
+package io.jktom.modules.sys.form;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotBlank;
 
@@ -27,29 +25,29 @@ import javax.validation.constraints.NotBlank;
  * @author Mark pjk2018@gmail.com
  * @since 3.1.0 2018-01-25
  */
-@ApiModel(value = "登录表单")
+
 public class LoginForm {
-    @ApiModelProperty(value = "手机号")
+
     @NotBlank(message="手机号不能为空")
-    private String mobile;
+    private String m;
 
-    @ApiModelProperty(value = "密码")
+
     @NotBlank(message="密码不能为空")
-    private String password;
+    private String p;
 
-    public String getMobile() {
-        return mobile;
+    public String getM() {
+        return m;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setM(String m) {
+        this.m = m;
     }
 
-    public String getPassword() {
-        return password;
+    public String getP() {
+        return p;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setP(String p) {
+        this.p = p;
     }
 }

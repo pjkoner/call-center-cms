@@ -1,13 +1,10 @@
 package io.jktom.modules.sys.service.impl;
 
 import io.jktom.common.utils.Constant;
-import io.jktom.common.utils.Constant;
 import io.jktom.modules.sys.dao.SysMenuDao;
 import io.jktom.modules.sys.dao.SysUserDao;
-import io.jktom.modules.sys.dao.SysUserTokenDao;
 import io.jktom.modules.sys.entity.SysMenuEntity;
 import io.jktom.modules.sys.entity.SysUserEntity;
-import io.jktom.modules.sys.entity.SysUserTokenEntity;
 import io.jktom.modules.sys.service.ShiroService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +18,7 @@ public class ShiroServiceImpl implements ShiroService {
     private SysMenuDao sysMenuDao;
     @Autowired
     private SysUserDao sysUserDao;
-    @Autowired
-    private SysUserTokenDao sysUserTokenDao;
+
 
     @Override
     public Set<String> getUserPermissions(long userId) {
@@ -49,10 +45,6 @@ public class ShiroServiceImpl implements ShiroService {
         return permsSet;
     }
 
-    @Override
-    public SysUserTokenEntity queryByToken(String token) {
-        return sysUserTokenDao.queryByToken(token);
-    }
 
     @Override
     public SysUserEntity queryUser(Long userId) {

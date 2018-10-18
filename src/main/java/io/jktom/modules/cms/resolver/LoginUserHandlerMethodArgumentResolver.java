@@ -1,9 +1,9 @@
 package io.jktom.modules.cms.resolver;
 
-import io.jktom.modules.cms.entity.UserEntity;
 import io.jktom.modules.cms.annotation.LoginUser;
 import io.jktom.modules.cms.interceptor.AuthorizationInterceptor;
-import io.jktom.modules.cms.service.UserService;
+import io.jktom.modules.sys.entity.SysUserEntity;
+import io.jktom.modules.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -22,11 +22,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 @Component
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
     @Autowired
-    private UserService userService;
+    private SysUserService userService;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().isAssignableFrom(UserEntity.class) && parameter.hasParameterAnnotation(LoginUser.class);
+        return parameter.getParameterType().isAssignableFrom(SysUserEntity.class) && parameter.hasParameterAnnotation(LoginUser.class);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
         }
 
         //获取用户信息
-        UserEntity user = userService.selectById((Long)object);
+        SysUserEntity user = userService.selectById((Long)object);
 
         return user;
     }

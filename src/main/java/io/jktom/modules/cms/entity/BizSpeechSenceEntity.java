@@ -11,10 +11,10 @@ import java.util.Date;
  * 
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018-10-16 17:30:19
+ * @date 2018-10-18 11:08:29
  */
-@TableName("biz_speech_technique")
-public class BizSpeechTechniqueEntity implements Serializable {
+@TableName("biz_speech_sence")
+public class BizSpeechSenceEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -41,7 +41,7 @@ public class BizSpeechTechniqueEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer createId;
+	private Long createId;
 	/**
 	 * 
 	 */
@@ -49,24 +49,20 @@ public class BizSpeechTechniqueEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer modifyId;
+	private Long modifyId;
 	/**
 	 * 
 	 */
 	private Integer isDelete;
 
-	/**
-	 * 设置：
-	 */
-	public void setSpeechId(Integer speechId) {
-		this.speechId = speechId;
-	}
-	/**
-	 * 获取：
-	 */
 	public Integer getSpeechId() {
 		return speechId;
 	}
+
+	public void setSpeechId(Integer speechId) {
+		this.speechId = speechId;
+	}
+
 	/**
 	 * 设置：
 	 */
@@ -91,16 +87,18 @@ public class BizSpeechTechniqueEntity implements Serializable {
 	public Integer getStatus() {
 		return status;
 	}
-
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
+	/**
+	 * 设置：
+	 */
 	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
 	}
-
+	/**
+	 * 获取：
+	 */
+	public Long getCompanyId() {
+		return companyId;
+	}
 	/**
 	 * 设置：
 	 */
@@ -116,13 +114,13 @@ public class BizSpeechTechniqueEntity implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setCreateId(Integer createId) {
+	public void setCreateId(Long createId) {
 		this.createId = createId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getCreateId() {
+	public Long getCreateId() {
 		return createId;
 	}
 	/**
@@ -140,13 +138,13 @@ public class BizSpeechTechniqueEntity implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setModifyId(Integer modifyId) {
+	public void setModifyId(Long modifyId) {
 		this.modifyId = modifyId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getModifyId() {
+	public Long getModifyId() {
 		return modifyId;
 	}
 	/**

@@ -3,6 +3,7 @@ package io.jktom.modules.cms.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import io.jktom.modules.cms.service.BizKonwledgeInfoService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.jktom.modules.cms.entity.BizKonwledgeInfoEntity;
-import io.jktom.modules.cms.service.BizKonwledgeInfoService;
 import io.jktom.common.utils.PageUtils;
 import io.jktom.common.utils.R;
 
@@ -23,7 +23,7 @@ import io.jktom.common.utils.R;
  *
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018-10-16 17:30:19
+ * @date 2018-10-18 11:08:29
  */
 @RestController
 @RequestMapping("cms/bizkonwledgeinfo")
@@ -35,6 +35,7 @@ public class BizKonwledgeInfoController {
      * 列表
      */
     @RequestMapping("/list")
+    @RequiresPermissions("cms:bizkonwledgeinfo:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = bizKonwledgeInfoService.queryPage(params);
 
@@ -46,7 +47,8 @@ public class BizKonwledgeInfoController {
      * 信息
      */
     @RequestMapping("/info/{knowledgeId}")
-    public R info(@PathVariable("knowledgeId") Integer knowledgeId){
+    @RequiresPermissions("cms:bizkonwledgeinfo:info")
+    public R info(@PathVariable("knowledgeId") Long knowledgeId){
 			BizKonwledgeInfoEntity bizKonwledgeInfo = bizKonwledgeInfoService.selectById(knowledgeId);
 
         return R.ok().put("bizKonwledgeInfo", bizKonwledgeInfo);
@@ -56,6 +58,7 @@ public class BizKonwledgeInfoController {
      * 保存
      */
     @RequestMapping("/save")
+    @RequiresPermissions("cms:bizkonwledgeinfo:save")
     public R save(@RequestBody BizKonwledgeInfoEntity bizKonwledgeInfo){
 			bizKonwledgeInfoService.insert(bizKonwledgeInfo);
 
@@ -66,6 +69,7 @@ public class BizKonwledgeInfoController {
      * 修改
      */
     @RequestMapping("/update")
+    @RequiresPermissions("cms:bizkonwledgeinfo:update")
     public R update(@RequestBody BizKonwledgeInfoEntity bizKonwledgeInfo){
 			bizKonwledgeInfoService.updateById(bizKonwledgeInfo);
 
@@ -76,7 +80,8 @@ public class BizKonwledgeInfoController {
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(@RequestBody Integer[] knowledgeIds){
+    @RequiresPermissions("cms:bizkonwledgeinfo:delete")
+    public R delete(@RequestBody Long[] knowledgeIds){
 			bizKonwledgeInfoService.deleteBatchIds(Arrays.asList(knowledgeIds));
 
         return R.ok();

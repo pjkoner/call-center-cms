@@ -16,7 +16,7 @@ public class R extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
 	
 	public R() {
-		put("success","success");
+		put("success",true);
 		put("code", 200);
 		put("msg", "");
 
@@ -32,7 +32,7 @@ public class R extends HashMap<String, Object> {
 	
 	public static R error(int code, String msg) {
 		R r = new R();
-		r.put("success","false");
+		r.put("success",false);
 		r.put("code", code);
 		r.put("msg", msg);
 		return r;

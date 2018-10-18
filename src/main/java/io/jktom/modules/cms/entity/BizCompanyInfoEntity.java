@@ -11,7 +11,7 @@ import java.util.Date;
  * 
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018-10-16 17:30:19
+ * @date 2018-10-18 11:08:29
  */
 @TableName("biz_company_info")
 public class BizCompanyInfoEntity implements Serializable {
@@ -21,7 +21,7 @@ public class BizCompanyInfoEntity implements Serializable {
 	 * 
 	 */
 	@TableId
-	private Integer companyId;
+	private Long companyId;
 	/**
 	 * 
 	 */
@@ -46,13 +46,13 @@ public class BizCompanyInfoEntity implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setCompanyId(Integer companyId) {
+	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getCompanyId() {
+	public Long getCompanyId() {
 		return companyId;
 	}
 	/**

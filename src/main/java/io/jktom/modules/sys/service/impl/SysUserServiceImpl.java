@@ -3,16 +3,18 @@ package io.jktom.modules.sys.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import io.jktom.common.constant.CmsCommomConstant;
+import io.jktom.common.exception.RRException;
+import io.jktom.common.utils.*;
 import io.jktom.common.exception.RRException;
 import io.jktom.common.utils.Constant;
 import io.jktom.common.utils.PageUtils;
 import io.jktom.common.utils.Query;
-import io.jktom.common.exception.RRException;
-import io.jktom.common.utils.Constant;
-import io.jktom.common.utils.PageUtils;
-import io.jktom.common.utils.Query;
+import io.jktom.modules.cms.entity.BizCompanyInfoEntity;
+import io.jktom.modules.cms.vo.UserInfoVO;
 import io.jktom.modules.sys.dao.SysUserDao;
 import io.jktom.modules.sys.entity.SysUserEntity;
+import io.jktom.modules.sys.oauth2.TokenGenerator;
 import io.jktom.modules.sys.service.SysRoleService;
 import io.jktom.modules.sys.service.SysUserRoleService;
 import io.jktom.modules.sys.service.SysUserService;
@@ -67,8 +69,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 	}
 
 	@Override
-	public SysUserEntity queryByUserName(String username) {
-		return baseMapper.queryByUserName(username);
+	public SysUserEntity queryByUserMobile(String mobile) {
+		return baseMapper.queryByUserMobile(mobile);
 	}
 
 	@Override
@@ -137,5 +139,31 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		if(!roleIdList.containsAll(user.getRoleIdList())){
 			throw new RRException("新增用户所选角色，不是本人创建");
 		}
+	}
+
+
+	@Override
+	public R createToken(long userId) {
+		//生成一个token
+		String token = TokenGenerator.generateValue(userId);
+
+		R r = R.ok().put("token", token).put("expire", CmsCommomConstant.TOKEN_EXPIRE.EXPIRE_TIME);
+
+		return r;
+	}
+
+	@Override
+	public UserInfoVO getUserInfo(SysUserEntity user) {
+
+		BizCompanyInfoEntity bizCompanyInfoEntity = new BizCompanyInfoEntity();
+
+		UserInfoVO userInfoVO = new UserInfoVO();
+
+		userInfoVO.setUserName(user.getUsername());
+		userInfoVO.setTelephone(user.getMobile());
+		userInfoVO.setCompanyId(bizCompanyInfoEntity.getCompanyId());
+		userInfoVO.setCompanyName(bizCompanyInfoEntity.getCompanyName());
+
+		return userInfoVO;
 	}
 }

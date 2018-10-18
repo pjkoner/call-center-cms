@@ -2,6 +2,8 @@ package io.jktom.modules.sys.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import io.jktom.common.utils.PageUtils;
+import io.jktom.common.utils.R;
+import io.jktom.modules.cms.vo.UserInfoVO;
 import io.jktom.modules.sys.entity.SysUserEntity;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +34,7 @@ public interface SysUserService extends IService<SysUserEntity> {
 	/**
 	 * 根据用户名，查询系统用户
 	 */
-	SysUserEntity queryByUserName(String username);
+	SysUserEntity queryByUserMobile(String mobile);
 
 	/**
 	 * 保存用户
@@ -56,4 +58,21 @@ public interface SysUserService extends IService<SysUserEntity> {
 	 * @param newPassword  新密码
 	 */
 	boolean updatePassword(Long userId, String password, String newPassword);
+
+
+
+	/**
+	 * 生成token
+	 * @param userId  用户ID
+	 */
+	R createToken(long userId);
+
+
+	/**
+	 * 获取用户的信息
+	 * @param user
+	 * @return
+	 */
+
+	UserInfoVO getUserInfo(SysUserEntity user);
 }

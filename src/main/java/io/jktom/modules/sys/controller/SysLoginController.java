@@ -1,12 +1,11 @@
 package io.jktom.modules.sys.controller;
 
 import io.jktom.common.utils.R;
-import io.jktom.common.utils.R;
+import io.jktom.common.validator.ValidatorUtils;
 import io.jktom.modules.sys.entity.SysUserEntity;
-import io.jktom.modules.sys.form.SysLoginForm;
+import io.jktom.modules.sys.form.LoginForm;
 import io.jktom.modules.sys.service.SysCaptchaService;
 import io.jktom.modules.sys.service.SysUserService;
-import io.jktom.modules.sys.service.SysUserTokenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
@@ -34,8 +33,7 @@ import java.util.Map;
 public class SysLoginController extends AbstractController {
 	@Autowired
 	private SysUserService sysUserService;
-	@Autowired
-	private SysUserTokenService sysUserTokenService;
+
 	@Autowired
 	private SysCaptchaService sysCaptchaService;
 
@@ -61,18 +59,20 @@ public class SysLoginController extends AbstractController {
 	 */
 	@ApiOperation("登陆入口")
 	@PostMapping("/sys/login")
-	public Map<String, Object> login(@RequestBody SysLoginForm form)throws IOException {
-
+	public Map<String, Object> login(@RequestBody LoginForm form)throws IOException {
+		//验证码
 //		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
 //		if(!captcha){
 //			return R.error("验证码不正确");
 //		}
 
+		//表单校验
+		ValidatorUtils.validateEntity(form);
 		//用户信息
-		SysUserEntity user = sysUserService.queryByUserName(form.getUsername());
+		SysUserEntity user = sysUserService.queryByUserMobile(form.getM());
 
 		//账号不存在、密码错误
-		if(user == null || !user.getPassword().equals(new Sha256Hash(form.getPassword(), user.getSalt()).toHex())) {
+		if(user == null || !user.getPassword().equals(new Sha256Hash(form.getP(), user.getSalt()).toHex())) {
 			return R.error("账号或密码不正确");
 		}
 
@@ -81,8 +81,8 @@ public class SysLoginController extends AbstractController {
 			return R.error("账号已被锁定,请联系管理员");
 		}
 
-		//生成token，并保存到数据库
-		R r = sysUserTokenService.createToken(user.getUserId());
+		//生成token 返回前端
+		R r = sysUserService.createToken(user.getUserId());
 		return r;
 	}
 
@@ -93,7 +93,7 @@ public class SysLoginController extends AbstractController {
 	@ApiOperation("退出入口")
 	@PostMapping("/sys/logout")
 	public R logout() {
-		//sysUserTokenService.logout(getUserId());
+
 
 
 		return R.ok();
@@ -105,8 +105,9 @@ public class SysLoginController extends AbstractController {
 	 */
 	@ApiOperation("注册入口")
 	@PostMapping("/sys/register")
-	public Map<String, Object> register(@RequestBody SysLoginForm form) throws IOException{
+	public Map<String, Object> register(@RequestBody LoginForm form) throws IOException{
 
+		//验证码
 //		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
 //		if(!captcha){
 //			return R.error("验证码不正确");
@@ -114,8 +115,10 @@ public class SysLoginController extends AbstractController {
 
 		SysUserEntity user = new SysUserEntity();
 
-		user.setPassword(form.getPassword());
-		user.setUsername(form.getUsername());
+		user.setPassword(form.getP());
+		user.setUsername(form.getM());
+		user.setMobile(form.getM());
+		//注册
 		user.setCreateUserId(0L);
 		user.setStatus(1);
 		sysUserService.save(user);

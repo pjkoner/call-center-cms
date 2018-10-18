@@ -11,7 +11,7 @@ import java.util.Date;
  * 
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018-10-16 17:30:19
+ * @date 2018-10-18 11:08:29
  */
 @TableName("biz_speech_info")
 public class BizSpeechInfoEntity implements Serializable {
@@ -21,11 +21,11 @@ public class BizSpeechInfoEntity implements Serializable {
 	 * 
 	 */
 	@TableId
-	private Integer speechInfoId;
+	private Long speechInfoId;
 	/**
 	 * 
 	 */
-	private Integer speechId;
+	private Long speechId;
 	/**
 	 * 
 	 */
@@ -37,7 +37,7 @@ public class BizSpeechInfoEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer createId;
+	private Long createId;
 	/**
 	 * 
 	 */
@@ -54,25 +54,25 @@ public class BizSpeechInfoEntity implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setSpeechInfoId(Integer speechInfoId) {
+	public void setSpeechInfoId(Long speechInfoId) {
 		this.speechInfoId = speechInfoId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getSpeechInfoId() {
+	public Long getSpeechInfoId() {
 		return speechInfoId;
 	}
 	/**
 	 * 设置：
 	 */
-	public void setSpeechId(Integer speechId) {
+	public void setSpeechId(Long speechId) {
 		this.speechId = speechId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getSpeechId() {
+	public Long getSpeechId() {
 		return speechId;
 	}
 	/**
@@ -102,13 +102,13 @@ public class BizSpeechInfoEntity implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setCreateId(Integer createId) {
+	public void setCreateId(Long createId) {
 		this.createId = createId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Integer getCreateId() {
+	public Long getCreateId() {
 		return createId;
 	}
 	/**
