@@ -35,7 +35,6 @@ public class BizSpeechInfoController {
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("cms:bizspeechinfo:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = bizSpeechInfoService.queryPage(params);
 
@@ -47,7 +46,6 @@ public class BizSpeechInfoController {
      * 信息
      */
     @RequestMapping("/info/{speechInfoId}")
-    @RequiresPermissions("cms:bizspeechinfo:info")
     public R info(@PathVariable("speechInfoId") Long speechInfoId){
 			BizSpeechInfoEntity bizSpeechInfo = bizSpeechInfoService.selectById(speechInfoId);
 
@@ -58,7 +56,6 @@ public class BizSpeechInfoController {
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("cms:bizspeechinfo:save")
     public R save(@RequestBody BizSpeechInfoEntity bizSpeechInfo){
 			bizSpeechInfoService.insert(bizSpeechInfo);
 
@@ -69,7 +66,6 @@ public class BizSpeechInfoController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("cms:bizspeechinfo:update")
     public R update(@RequestBody BizSpeechInfoEntity bizSpeechInfo){
 			bizSpeechInfoService.updateById(bizSpeechInfo);
 
@@ -80,7 +76,6 @@ public class BizSpeechInfoController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("cms:bizspeechinfo:delete")
     public R delete(@RequestBody Long[] speechInfoIds){
 			bizSpeechInfoService.deleteBatchIds(Arrays.asList(speechInfoIds));
 

@@ -3,6 +3,7 @@ package io.jktom.modules.cms.service;
 import com.baomidou.mybatisplus.service.IService;
 import io.jktom.common.utils.PageUtils;
 import io.jktom.modules.cms.entity.BizSpeechInfoEntity;
+import io.jktom.modules.cms.form.SpeechTechniqueForm;
 
 import java.util.Map;
 
@@ -16,5 +17,6 @@ import java.util.Map;
 public interface BizSpeechInfoService extends IService<BizSpeechInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
 }
 

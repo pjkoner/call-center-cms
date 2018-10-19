@@ -96,6 +96,7 @@ public class SysUserController extends AbstractController {
 	@GetMapping("/info/{userId}")
 	@RequiresPermissions("sys:user:info")
 	public R info(@PathVariable("userId") Long userId){
+
 		SysUserEntity user = sysUserService.selectById(userId);
 		
 		//获取用户所属的角色列表

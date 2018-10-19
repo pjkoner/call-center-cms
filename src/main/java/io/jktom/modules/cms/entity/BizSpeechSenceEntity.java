@@ -21,11 +21,17 @@ public class BizSpeechSenceEntity implements Serializable {
 	 * 
 	 */
 	@TableId
-	private Integer speechId;
+	private Long speechId;
 	/**
 	 * 
 	 */
 	private String speechName;
+	/**
+	 *
+	 */
+
+	private String mark;
+
 	/**
 	 * 
 	 */
@@ -55,12 +61,20 @@ public class BizSpeechSenceEntity implements Serializable {
 	 */
 	private Integer isDelete;
 
-	public Integer getSpeechId() {
+	public Long getSpeechId() {
 		return speechId;
 	}
 
-	public void setSpeechId(Integer speechId) {
+	public void setSpeechId(Long speechId) {
 		this.speechId = speechId;
+	}
+
+	public String getMark() {
+		return mark;
+	}
+
+	public void setMark(String mark) {
+		this.mark = mark;
 	}
 
 	/**

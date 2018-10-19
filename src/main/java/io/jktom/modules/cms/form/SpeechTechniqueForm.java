@@ -18,6 +18,8 @@ import java.util.Date;
 public class SpeechTechniqueForm {
 
 
+	private Long speechId;
+
 	/**
 	 * 话术名称
 	 */
@@ -28,6 +30,15 @@ public class SpeechTechniqueForm {
 	 * 话术备注
 	 */
 	private String speechMark;
+
+
+	public Long getSpeechId() {
+		return speechId;
+	}
+
+	public void setSpeechId(Long speechId) {
+		this.speechId = speechId;
+	}
 
 	public String getSpeechName() {
 		return speechName;

@@ -1,5 +1,6 @@
 package io.jktom.modules.cms.service.impl;
 
+import io.jktom.modules.cms.form.SpeechTechniqueForm;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -25,5 +26,8 @@ public class BizSpeechInfoServiceImpl extends ServiceImpl<BizSpeechInfoDao, BizS
 
         return new PageUtils(page);
     }
+
+
+
 
 }

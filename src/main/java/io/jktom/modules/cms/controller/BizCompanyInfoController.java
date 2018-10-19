@@ -35,7 +35,6 @@ public class BizCompanyInfoController {
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("cms:bizcompanyinfo:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = bizCompanyInfoService.queryPage(params);
 
@@ -47,7 +46,6 @@ public class BizCompanyInfoController {
      * 信息
      */
     @RequestMapping("/info/{companyId}")
-    @RequiresPermissions("cms:bizcompanyinfo:info")
     public R info(@PathVariable("companyId") Long companyId){
 			BizCompanyInfoEntity bizCompanyInfo = bizCompanyInfoService.selectById(companyId);
 
@@ -58,7 +56,6 @@ public class BizCompanyInfoController {
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("cms:bizcompanyinfo:save")
     public R save(@RequestBody BizCompanyInfoEntity bizCompanyInfo){
 			bizCompanyInfoService.insert(bizCompanyInfo);
 
@@ -69,7 +66,6 @@ public class BizCompanyInfoController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("cms:bizcompanyinfo:update")
     public R update(@RequestBody BizCompanyInfoEntity bizCompanyInfo){
 			bizCompanyInfoService.updateById(bizCompanyInfo);
 
@@ -80,7 +76,6 @@ public class BizCompanyInfoController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("cms:bizcompanyinfo:delete")
     public R delete(@RequestBody Long[] companyIds){
 			bizCompanyInfoService.deleteBatchIds(Arrays.asList(companyIds));
 

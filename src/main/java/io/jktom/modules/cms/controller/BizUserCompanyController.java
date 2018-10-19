@@ -35,7 +35,6 @@ public class BizUserCompanyController {
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("cms:bizusercompany:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = bizUserCompanyService.queryPage(params);
 
@@ -47,7 +46,6 @@ public class BizUserCompanyController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("cms:bizusercompany:info")
     public R info(@PathVariable("id") Long id){
 			BizUserCompanyEntity bizUserCompany = bizUserCompanyService.selectById(id);
 
@@ -58,7 +56,6 @@ public class BizUserCompanyController {
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("cms:bizusercompany:save")
     public R save(@RequestBody BizUserCompanyEntity bizUserCompany){
 			bizUserCompanyService.insert(bizUserCompany);
 
@@ -69,7 +66,6 @@ public class BizUserCompanyController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("cms:bizusercompany:update")
     public R update(@RequestBody BizUserCompanyEntity bizUserCompany){
 			bizUserCompanyService.updateById(bizUserCompany);
 
@@ -80,7 +76,6 @@ public class BizUserCompanyController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("cms:bizusercompany:delete")
     public R delete(@RequestBody Long[] ids){
 			bizUserCompanyService.deleteBatchIds(Arrays.asList(ids));
 

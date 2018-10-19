@@ -35,7 +35,6 @@ public class BizKonwledgeInfoController {
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("cms:bizkonwledgeinfo:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = bizKonwledgeInfoService.queryPage(params);
 
@@ -47,7 +46,6 @@ public class BizKonwledgeInfoController {
      * 信息
      */
     @RequestMapping("/info/{knowledgeId}")
-    @RequiresPermissions("cms:bizkonwledgeinfo:info")
     public R info(@PathVariable("knowledgeId") Long knowledgeId){
 			BizKonwledgeInfoEntity bizKonwledgeInfo = bizKonwledgeInfoService.selectById(knowledgeId);
 
@@ -58,7 +56,6 @@ public class BizKonwledgeInfoController {
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("cms:bizkonwledgeinfo:save")
     public R save(@RequestBody BizKonwledgeInfoEntity bizKonwledgeInfo){
 			bizKonwledgeInfoService.insert(bizKonwledgeInfo);
 
@@ -69,7 +66,6 @@ public class BizKonwledgeInfoController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("cms:bizkonwledgeinfo:update")
     public R update(@RequestBody BizKonwledgeInfoEntity bizKonwledgeInfo){
 			bizKonwledgeInfoService.updateById(bizKonwledgeInfo);
 
@@ -80,7 +76,6 @@ public class BizKonwledgeInfoController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("cms:bizkonwledgeinfo:delete")
     public R delete(@RequestBody Long[] knowledgeIds){
 			bizKonwledgeInfoService.deleteBatchIds(Arrays.asList(knowledgeIds));
 
