@@ -11,7 +11,7 @@ import java.util.Date;
  * 
  * @author pjk
  * @email pjk2018@gmail.com
- * @date 2018-10-18 11:08:29
+ * @date 2018-10-22 09:31:38
  */
 @TableName("biz_speech_info")
 public class BizSpeechInfoEntity implements Serializable {
@@ -21,13 +21,21 @@ public class BizSpeechInfoEntity implements Serializable {
 	 * 
 	 */
 	@TableId
-	private Long speechInfoId;
+	private Long speechNodeId;
 	/**
 	 * 
 	 */
 	private Long speechId;
 	/**
 	 * 
+	 */
+	private String nodeName;
+	/**
+	 * 
+	 */
+	private Integer sortIndex;
+	/**
+	 *
 	 */
 	private Integer serialNum;
 	/**
@@ -51,17 +59,26 @@ public class BizSpeechInfoEntity implements Serializable {
 	 */
 	private Integer isDelete;
 
+
+	public Integer getSortIndex() {
+		return sortIndex;
+	}
+
+	public void setSortIndex(Integer sortIndex) {
+		this.sortIndex = sortIndex;
+	}
+
 	/**
 	 * 设置：
 	 */
-	public void setSpeechInfoId(Long speechInfoId) {
-		this.speechInfoId = speechInfoId;
+	public void setSpeechNodeId(Long speechNodeId) {
+		this.speechNodeId = speechNodeId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Long getSpeechInfoId() {
-		return speechInfoId;
+	public Long getSpeechNodeId() {
+		return speechNodeId;
 	}
 	/**
 	 * 设置：
@@ -74,6 +91,18 @@ public class BizSpeechInfoEntity implements Serializable {
 	 */
 	public Long getSpeechId() {
 		return speechId;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setNodeName(String nodeName) {
+		this.nodeName = nodeName;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getNodeName() {
+		return nodeName;
 	}
 	/**
 	 * 设置：

@@ -5,8 +5,10 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="io.jktom.modules.cms.entity.BizSpeechInfoEntity" id="bizSpeechInfoMap">
-        <result property="speechInfoId" column="speech_info_id"/>
+        <result property="speechNodeId" column="speech_node_id"/>
         <result property="speechId" column="speech_id"/>
+        <result property="nodeName" column="node_name"/>
+        <result property="sortIndex" column="sort_index"/>
         <result property="serialNum" column="serial_num"/>
         <result property="speechInfo" column="speech_info"/>
         <result property="createId" column="create_id"/>
@@ -14,6 +16,198 @@
         <result property="modifyTime" column="modify_time"/>
         <result property="isDelete" column="is_delete"/>
     </resultMap>
+
+    <sql id="selectFields">
+		b.speech_node_id,
+		b.speech_id,
+		b.node_name,
+		b.sort_index,
+		b.serial_num,
+		b.speech_info,
+		b.create_id,
+		b.create_time,
+		b.modify_time,
+		b.is_delete
+	</sql>
+
+    <sql id="searchCondition">
+        b.is_delete = 0
+        <if test="speechNodeId != null">
+            AND b.speech_node_id = #{speechNodeId}
+        </if>
+        <if test="speechId != null">
+            AND b.speech_id = #{speechId}
+        </if>
+        <if test="nodeName != null">
+            AND b.node_name = #{nodeName}
+        </if>
+        <if test="sortIndex != null">
+            AND b.sort_index = #{sortIndex}
+        </if>
+        <if test="serialNum != null">
+            AND b.serial_num = #{serialNum}
+        </if>
+        <if test="speechInfo != null">
+            AND b.speech_info = #{speechInfo}
+        </if>
+        <if test="createId != null">
+            AND b.create_id = #{createId}
+        </if>
+        <if test="createTime != null">
+            AND b.create_time = #{createTime}
+        </if>
+        <if test="modifyTime != null">
+            AND b.modify_time = #{modifyTime}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="insertBizSpeechInfo" parameterType="io.jktom.modules.cms.entity.BizSpeechInfoEntity" useGeneratedKeys="true" keyProperty="speechNodeId">
+		INSERT INTO biz_speech_info(
+			speech_id,
+			node_name,
+			sort_index,
+			serial_num,
+			speech_info,
+			create_id,
+			create_time,
+			modify_time,
+			is_delete
+		) VALUES (
+			#{speechId},
+			#{nodeName},
+			#{sortIndex},
+			#{serialNum},
+			#{speechInfo},
+			#{createId},
+			#{createTime},
+			#{modifyTime},
+			0
+		)
+	</insert>
+
+    <!-- 根据主键查询 -->
+    <select id="selectBizSpeechInfoById" parameterType="java.lang.Long" resultMap="bizSpeechInfoMap">
+        SELECT
+        <include refid="selectFields" />
+        FROM
+        biz_speech_info b
+        WHERE
+        b.speech_node_id = #{speechNodeId}
+    </select>
+
+    <!-- 查询1条 -->
+    <select id="selectOneBizSpeechInfo" parameterType="io.jktom.modules.cms.bo.QueryBizSpeechInfoBO" resultMap="bizSpeechInfoMap">
+        SELECT
+        <include refid="selectFields" />
+        FROM
+        biz_speech_info b
+        <where>
+            <include refid="searchCondition" />
+        </where>
+        ORDER BY b.speech_node_id DESC
+        LIMIT 1
+    </select>
+
+    <!-- 查询列表 -->
+    <select id="selectBizSpeechInfoList" parameterType="io.jktom.modules.cms.bo.QueryBizSpeechInfoBO" resultMap="bizSpeechInfoMap">
+        SELECT
+        <include refid="selectFields" />
+        FROM
+        biz_speech_info b
+        <where>
+            <include refid="searchCondition" />
+        </where>
+    </select>
+
+    <!-- 分页计数 -->
+    <select id="selectBizSpeechInfoCount" parameterType="io.jktom.modules.cms.bo.QueryBizSpeechInfoBO" resultType="java.lang.Integer">
+        SELECT
+        COUNT(1)
+        FROM
+        biz_speech_info b
+        <where>
+            <include refid="searchCondition" />
+        </where>
+    </select>
+
+    <!-- 分页查找 -->
+    <select id="selectBizSpeechInfoPage" parameterType="io.jktom.modules.cms.bo.QueryBizSpeechInfoBO" resultMap="bizSpeechInfoMap">
+        SELECT
+        <include refid="selectFields" />
+        FROM
+        biz_speech_info b
+        <where>
+            <include refid="searchCondition" />
+        </where>
+        ORDER BY b.speech_node_id DESC
+        LIMIT #{pageIndex}, #{pageSize}
+    </select>
+
+    <!-- 完全修改 -->
+    <update id="updateBizSpeechInfo" parameterType="io.jktom.modules.cms.entity.BizSpeechInfoEntity">
+		UPDATE
+			biz_speech_info
+		SET
+			speech_id = #{speechId},
+			node_name = #{nodeName},
+			sort_index = #{sortIndex},
+			serial_num = #{serialNum},
+			speech_info = #{speechInfo},
+			create_id = #{createId},
+			create_time = #{createTime},
+			modify_time = #{modifyTime},
+			is_delete = #{isDelete}
+		WHERE
+			speech_node_id = #{speechNodeId}
+	</update>
+
+    <!-- 选择性修改 -->
+    <update id="updateBizSpeechInfoSelective" parameterType="io.jktom.modules.cms.entity.BizSpeechInfoEntity">
+        UPDATE
+        biz_speech_info
+        SET
+        <if test="speechId != null">
+            speech_id = #{speechId},
+        </if>
+        <if test="nodeName != null">
+            node_name = #{nodeName},
+        </if>
+        <if test="sortIndex != null">
+            sort_index = #{sortIndex},
+        </if>
+        <if test="serialNum != null">
+            serial_num = #{serialNum},
+        </if>
+        <if test="speechInfo != null">
+            speech_info = #{speechInfo},
+        </if>
+        <if test="createId != null">
+            create_id = #{createId},
+        </if>
+        <if test="createTime != null">
+            create_time = #{createTime},
+        </if>
+        <if test="modifyTime != null">
+            modify_time = #{modifyTime},
+        </if>
+        <if test="isDelete != null">
+            is_delete = #{isDelete}
+        </if>
+        WHERE
+        speech_node_id = #{speechNodeId}
+    </update>
+
+    <!-- 删除 -->
+    <update id="deleteBizSpeechInfo" parameterType="java.lang.Long">
+		UPDATE
+			biz_speech_info
+		SET
+			is_delete = 1,
+			gmt_modified = NOW()
+		WHERE
+			speech_node_id = #{speechNodeId}
+	</update>
 
 
 </mapper>
