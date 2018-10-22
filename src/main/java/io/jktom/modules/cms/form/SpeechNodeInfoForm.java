@@ -1,5 +1,8 @@
 package io.jktom.modules.cms.form;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author pjk
  * @date 2018-10-22 10:37
@@ -7,10 +10,22 @@ package io.jktom.modules.cms.form;
  */
 public class SpeechNodeInfoForm {
 
+    @NotBlank(message="话术名称不能为空")
     private String speechNodeName;
 
     private Long speechNodeId;
 
+
+    private Long speechId;
+
+
+    public Long getSpeechId() {
+        return speechId;
+    }
+
+    public void setSpeechId(Long speechId) {
+        this.speechId = speechId;
+    }
 
     public Long getSpeechNodeId() {
         return speechNodeId;

@@ -13,6 +13,7 @@
         <result property="speechInfo" column="speech_info"/>
         <result property="createId" column="create_id"/>
         <result property="createTime" column="create_time"/>
+        <result property="modifyId" column="modify_id"/>
         <result property="modifyTime" column="modify_time"/>
         <result property="isDelete" column="is_delete"/>
     </resultMap>
@@ -26,6 +27,7 @@
 		b.speech_info,
 		b.create_id,
 		b.create_time,
+		b.modify_id,
 		b.modify_time,
 		b.is_delete
 	</sql>
@@ -56,6 +58,9 @@
         <if test="createTime != null">
             AND b.create_time = #{createTime}
         </if>
+        <if test="modifyId != null">
+            AND b.modify_id = #{modifyId}
+        </if>
         <if test="modifyTime != null">
             AND b.modify_time = #{modifyTime}
         </if>
@@ -71,6 +76,7 @@
 			speech_info,
 			create_id,
 			create_time,
+			modify_id,
 			modify_time,
 			is_delete
 		) VALUES (
@@ -81,6 +87,7 @@
 			#{speechInfo},
 			#{createId},
 			#{createTime},
+			#{modifyId},
 			#{modifyTime},
 			0
 		)
@@ -187,6 +194,9 @@
         </if>
         <if test="createTime != null">
             create_time = #{createTime},
+        </if>
+        <if test="modifyId != null">
+            modify_id = #{modifyId},
         </if>
         <if test="modifyTime != null">
             modify_time = #{modifyTime},

@@ -47,6 +47,10 @@ public class BizSpeechInfoEntity implements Serializable {
 	 */
 	private Long createId;
 	/**
+	 *
+	 */
+	private Long modifyId;
+	/**
 	 * 
 	 */
 	private Date createTime;
@@ -66,6 +70,14 @@ public class BizSpeechInfoEntity implements Serializable {
 
 	public void setSortIndex(Integer sortIndex) {
 		this.sortIndex = sortIndex;
+	}
+
+	public Long getModifyId() {
+		return modifyId;
+	}
+
+	public void setModifyId(Long modifyId) {
+		this.modifyId = modifyId;
 	}
 
 	/**

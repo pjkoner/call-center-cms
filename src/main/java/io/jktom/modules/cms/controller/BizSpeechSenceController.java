@@ -1,10 +1,10 @@
 package io.jktom.modules.cms.controller;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 import io.jktom.common.validator.ValidatorUtils;
+import io.jktom.modules.cms.constant.CmsCommomConstant;
+import io.jktom.modules.cms.form.SpeechSenceInfoForm;
 import io.jktom.modules.cms.form.SpeechTechniqueForm;
 import io.jktom.modules.cms.service.BizSpeechSenceService;
 import io.jktom.modules.sys.controller.AbstractController;
@@ -37,9 +37,15 @@ public class BizSpeechSenceController extends AbstractController {
     @PostMapping("/list")
     public R list(@RequestBody Map<String, Object> params){
 
+        Integer speechType = (Integer)params.get("speechType");
+
+        if(speechType == null || speechType < 0){
+            return R.error(200,"传入的Type不能为空");
+        }
+
         PageUtils page = bizSpeechSenceService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.ok("请求成功").put("page", page);
     }
 
 
@@ -71,7 +77,7 @@ public class BizSpeechSenceController extends AbstractController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody SpeechTechniqueForm form){
+    public R update(@RequestBody SpeechSenceInfoForm form){
 
         ValidatorUtils.validateEntity(form);
 
@@ -81,7 +87,7 @@ public class BizSpeechSenceController extends AbstractController {
         speechSenceEntity.setSpeechName(form.getSpeechName());
         speechSenceEntity.setMark(form.getSpeechMark());
         speechSenceEntity.setModifyId(getUserId());
-        speechSenceEntity.setCreateTime(new Date());
+        speechSenceEntity.setModifyTime(new Date());
         bizSpeechSenceService.updateById(speechSenceEntity);
 
         return R.ok();
@@ -91,9 +97,21 @@ public class BizSpeechSenceController extends AbstractController {
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] senceIds){
+    public R delete(@RequestBody Long[] speechIds){
 
-        bizSpeechSenceService.deleteBatchIds(Arrays.asList(senceIds));
+        List<BizSpeechSenceEntity> bizSpeechSenceEntityList = new ArrayList<BizSpeechSenceEntity>();
+
+        for(Long id : speechIds){
+            BizSpeechSenceEntity speechSenceEntity = new BizSpeechSenceEntity();
+            speechSenceEntity.setIsDelete(CmsCommomConstant.IS_DELETE.DELETE);
+            speechSenceEntity.setModifyTime(new Date());
+            speechSenceEntity.setModifyId(getUserId());
+            speechSenceEntity.setSpeechId(id);
+            bizSpeechSenceEntityList.add(speechSenceEntity);
+
+        }
+
+        bizSpeechSenceService.updateBatchById(bizSpeechSenceEntityList);
 
         return R.ok();
     }

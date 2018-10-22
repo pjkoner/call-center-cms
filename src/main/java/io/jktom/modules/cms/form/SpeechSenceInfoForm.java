@@ -1,11 +1,8 @@
 package io.jktom.modules.cms.form;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
-import java.util.Date;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * 
@@ -15,10 +12,11 @@ import java.util.Date;
  * @date 2018-10-16 17:30:19
  */
 
-public class SpeechTechniqueForm {
+public class SpeechSenceInfoForm {
 
 
-
+	@NotNull(message="话术Id不能为空")
+	private Long speechId;
 
 	/**
 	 * 话术名称
@@ -31,6 +29,14 @@ public class SpeechTechniqueForm {
 	 */
 	private String speechMark;
 
+
+	public Long getSpeechId() {
+		return speechId;
+	}
+
+	public void setSpeechId(Long speechId) {
+		this.speechId = speechId;
+	}
 
 	public String getSpeechName() {
 		return speechName;

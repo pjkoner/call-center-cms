@@ -1,8 +1,11 @@
 package io.jktom.modules.cms.service.impl;
 
+import io.jktom.modules.cms.constant.CmsCommomConstant;
 import io.jktom.modules.cms.form.SpeechTechniqueForm;
 import io.jktom.modules.sys.entity.SysUserEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.Map;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -28,8 +31,10 @@ public class BizSpeechSenceServiceImpl extends ServiceImpl<BizSpeechSenceDao, Bi
         Page<BizSpeechSenceEntity> page = this.selectPage(
                 new Query<BizSpeechSenceEntity>(params).getPage(),
                 new EntityWrapper<BizSpeechSenceEntity>()
-                        .like("speechName",speechName)
+                        .like("speech_name",speechName)
                         .eq(speechType != 0 ,"status",speechType)
+                        .eq("is_delete",0)
+
 
         );
 
@@ -46,8 +51,10 @@ public class BizSpeechSenceServiceImpl extends ServiceImpl<BizSpeechSenceDao, Bi
             speechSence.setMark(form.getSpeechMark());
         }
         //默认未发布
-        speechSence.setStatus(1);
+        speechSence.setStatus(CmsCommomConstant.SPEECH_STATUS.NOT_ISSUE);
         speechSence.setCreateId(user.getUserId());
+        speechSence.setCreateTime(new Date());
+        speechSence.setIsDelete(CmsCommomConstant.IS_DELETE.NOT_DELETE);
 
         this.insert(speechSence);
     }

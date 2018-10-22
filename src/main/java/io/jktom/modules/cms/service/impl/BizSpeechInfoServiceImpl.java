@@ -2,6 +2,7 @@ package io.jktom.modules.cms.service.impl;
 
 import io.jktom.common.utils.R;
 import io.jktom.modules.cms.bo.QueryBizSpeechInfoBO;
+import io.jktom.modules.cms.constant.CmsCommomConstant;
 import io.jktom.modules.cms.entity.BizSpeechInfoEntity;
 import io.jktom.modules.cms.vo.SpeechInfoVO;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,7 @@ public class BizSpeechInfoServiceImpl extends ServiceImpl<BizSpeechInfoDao, BizS
 
         QueryBizSpeechInfoBO BO = new QueryBizSpeechInfoBO();
         BO.setSpeechId(speechId);
+        BO.setIsDelete(CmsCommomConstant.IS_DELETE.NOT_DELETE);
         List<BizSpeechInfoEntity> bizSpeechInfoEntities = baseMapper.selectBizSpeechInfoList(BO);
 
         List<SpeechInfoVO> speechInfoVOS = new ArrayList<SpeechInfoVO>();
