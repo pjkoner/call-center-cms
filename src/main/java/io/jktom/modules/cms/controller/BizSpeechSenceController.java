@@ -8,6 +8,7 @@ import io.jktom.modules.cms.form.SpeechSenceInfoForm;
 import io.jktom.modules.cms.form.SpeechTechniqueForm;
 import io.jktom.modules.cms.service.BizSpeechSenceService;
 import io.jktom.modules.sys.controller.AbstractController;
+import org.apache.http.HttpStatus;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +18,7 @@ import io.jktom.common.utils.PageUtils;
 import io.jktom.common.utils.R;
 
 
-
 /**
- * 
- *
  * @author pjk
  * @email pjk2018@gmail.com
  * @date 2018-10-18 11:08:29
@@ -35,12 +33,12 @@ public class BizSpeechSenceController extends AbstractController {
      * 列表
      */
     @PostMapping("/list")
-    public R list(@RequestBody Map<String, Object> params){
+    public R list(@RequestBody Map<String, Object> params) {
 
-        Integer speechType = (Integer)params.get("speechType");
+        Integer speechType = (Integer) params.get("speechType");
 
-        if(speechType == null || speechType < 0){
-            return R.error(200,"传入的Type不能为空");
+        if (speechType == null || speechType < 0) {
+            return R.error(HttpStatus.SC_BAD_REQUEST, "传入的Type不能为空");
         }
 
         PageUtils page = bizSpeechSenceService.queryPage(params);
@@ -53,7 +51,7 @@ public class BizSpeechSenceController extends AbstractController {
      * 信息
      */
     @RequestMapping("/info/{senceId}")
-    public R info(@PathVariable("senceId") Long senceId){
+    public R info(@PathVariable("senceId") Long senceId) {
 
         BizSpeechSenceEntity bizSpeechSence = bizSpeechSenceService.selectById(senceId);
 
@@ -64,11 +62,11 @@ public class BizSpeechSenceController extends AbstractController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody SpeechTechniqueForm speechTechniqueForm){
+    public R save(@RequestBody SpeechTechniqueForm speechTechniqueForm) {
 
         ValidatorUtils.validateEntity(speechTechniqueForm);
 
-        bizSpeechSenceService.insertSpeech(speechTechniqueForm,getUser());
+        bizSpeechSenceService.insertSpeech(speechTechniqueForm, getUser());
 
         return R.ok();
     }
@@ -77,7 +75,7 @@ public class BizSpeechSenceController extends AbstractController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody SpeechSenceInfoForm form){
+    public R update(@RequestBody SpeechSenceInfoForm form) {
 
         ValidatorUtils.validateEntity(form);
 
@@ -97,11 +95,15 @@ public class BizSpeechSenceController extends AbstractController {
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] speechIds){
+    public R delete(@RequestBody Long[] speechIds) {
+
+        if(speechIds == null){
+            return R.error(HttpStatus.SC_BAD_REQUEST, "传入参数有误");
+        }
 
         List<BizSpeechSenceEntity> bizSpeechSenceEntityList = new ArrayList<BizSpeechSenceEntity>();
 
-        for(Long id : speechIds){
+        for (Long id : speechIds) {
             BizSpeechSenceEntity speechSenceEntity = new BizSpeechSenceEntity();
             speechSenceEntity.setIsDelete(CmsCommomConstant.IS_DELETE.DELETE);
             speechSenceEntity.setModifyTime(new Date());

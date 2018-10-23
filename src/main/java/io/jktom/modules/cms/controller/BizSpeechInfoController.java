@@ -1,32 +1,28 @@
 package io.jktom.modules.cms.controller;
 
-import java.util.*;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import io.jktom.common.utils.PageUtils;
+import io.jktom.common.utils.R;
 import io.jktom.common.utils.ShiroUtils;
 import io.jktom.common.validator.ValidatorUtils;
 import io.jktom.modules.cms.constant.CmsCommomConstant;
+import io.jktom.modules.cms.entity.BizSpeechInfoEntity;
 import io.jktom.modules.cms.form.SpeechNodeInfoForm;
 import io.jktom.modules.cms.form.SpeechSortIndexForm;
+import io.jktom.modules.cms.service.BizSpeechInfoService;
 import io.jktom.modules.cms.vo.SpeechInfoVO;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.jktom.modules.cms.entity.BizSpeechInfoEntity;
-import io.jktom.modules.cms.service.BizSpeechInfoService;
-import io.jktom.common.utils.PageUtils;
-import io.jktom.common.utils.R;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 
 /**
- *
- *
  * @author pjk
  * @email pjk2018@gmail.com
  * @date 2018-10-22 09:31:38
@@ -37,25 +33,15 @@ public class BizSpeechInfoController {
     @Autowired
     private BizSpeechInfoService bizSpeechInfoService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = bizSpeechInfoService.queryPage(params);
-
-        return R.ok().put("page", page);
-    }
-
 
     /**
      * 信息
      */
     @RequestMapping("/getSpeechNode")
-    public R info(@RequestParam("speechNodeId") Long speechNodeId){
+    public R info(@RequestParam("speechNodeId") Long speechNodeId) {
 
-        if(speechNodeId == null || speechNodeId < 0L){
-            return R.error(400,"传入参数错误");
+        if (speechNodeId == null || speechNodeId < 0L) {
+            return R.error(HttpStatus.SC_BAD_REQUEST, "传入参数错误");
         }
 
         BizSpeechInfoEntity bizSpeechInfo = bizSpeechInfoService.selectById(speechNodeId);
@@ -73,10 +59,10 @@ public class BizSpeechInfoController {
      * 信息
      */
     @RequestMapping("/getSpeechList")
-    public R getSpeechinfo(@RequestParam("speechId") Long speechId){
+    public R getSpeechinfo(@RequestParam("speechId") Long speechId) {
 
-        if(speechId == null || speechId < 0L){
-            return R.error(400,"传入参数错误");
+        if (speechId == null || speechId < 0L) {
+            return R.error(HttpStatus.SC_BAD_REQUEST, "传入参数错误");
         }
 
         return bizSpeechInfoService.selectSpeechInfolist(speechId);
@@ -86,16 +72,16 @@ public class BizSpeechInfoController {
      * 保存
      */
     @RequestMapping("/saveSpeechNode")
-    public R save(@RequestBody SpeechNodeInfoForm form){
+    public R save(@RequestBody SpeechNodeInfoForm form) {
 
         ValidatorUtils.validateEntity(form);
 
-        if(form.getSpeechNodeName().length() > 20){
-            return R.error(400,"传入参数过长");
+        if (form.getSpeechNodeName().length() > 20) {
+            return R.error(HttpStatus.SC_BAD_REQUEST, "传入参数过长");
         }
 
-        if( form.getSpeechId() < 0L || form.getSpeechId() == null){
-            return R.error(400,"传入参数错误");
+        if (form.getSpeechId() < 0L || form.getSpeechId() == null) {
+            return R.error(HttpStatus.SC_BAD_REQUEST, "传入参数错误");
         }
 
 
@@ -114,17 +100,17 @@ public class BizSpeechInfoController {
      * 修改
      */
     @RequestMapping("/updateSpeechNode")
-    public R update(@RequestBody SpeechNodeInfoForm form){
+    public R update(@RequestBody SpeechNodeInfoForm form) {
 
         ValidatorUtils.validateEntity(form);
 
-        if(form.getSpeechNodeName().length() > 20){
-            return R.error(400,"传入参数过长");
+        if (form.getSpeechNodeName().length() > 20) {
+            return R.error(HttpStatus.SC_BAD_REQUEST, "传入参数过长");
         }
 
 
-        if(form.getSpeechNodeId() == null || form.getSpeechNodeId() < 0L){
-            return R.error(400,"传入参数不能为空");
+        if (form.getSpeechNodeId() == null || form.getSpeechNodeId() < 0L) {
+            return R.error(HttpStatus.SC_BAD_REQUEST, "传入参数错误");
         }
 
         BizSpeechInfoEntity bizSpeechInfo = new BizSpeechInfoEntity();
@@ -143,30 +129,22 @@ public class BizSpeechInfoController {
      * 保存顺序
      */
     @RequestMapping("/saveSortIndex")
-    public R saveSortIndex(HttpServletRequest request,@RequestBody JSONObject params){
+    public R saveSortIndex(@RequestBody ArrayList<SpeechSortIndexForm> params) {
 
-
-        JSONArray jsonArray = params.getJSONArray("dataList");
-
-        if (null == jsonArray) {
-            return R.error(400,"请求参数不能为空");
+        if (null == params) {
+            return R.error(HttpStatus.SC_BAD_REQUEST, "请求参数不能为空");
         }
 
-        List<SpeechSortIndexForm> sortIndexList = JSONObject.parseArray(
-                jsonArray.toJSONString(),SpeechSortIndexForm.class);
+        for (SpeechSortIndexForm form : params) {
 
-        for(SpeechSortIndexForm form : sortIndexList){
-
-            if(form.getSortIndex() ==null || form.getSortIndex() < 0){
-                return R.error(400,"请求参数错误");
+            if (form.getSortIndex() == null || form.getSortIndex() < 0
+                    || form.getSpeechNodeId() == null || form.getSpeechNodeId() < 0) {
+                return R.error(HttpStatus.SC_BAD_REQUEST, "请求参数错误");
             }
 
-            if(form.getSpeechNodeId() ==null || form.getSpeechNodeId() < 0){
-                return R.error(400,"请求参数错误");
-            }
         }
 
-        for(SpeechSortIndexForm form : sortIndexList){
+        for (SpeechSortIndexForm form : params) {
 
             BizSpeechInfoEntity bizSpeechInfo = new BizSpeechInfoEntity();
             bizSpeechInfo.setSpeechNodeId(form.getSpeechNodeId());
@@ -184,11 +162,11 @@ public class BizSpeechInfoController {
      * 删除
      */
     @RequestMapping("/deleteSpeechNode")
-    public R delete(@RequestParam Long speechNodeId){
+    public R delete(@RequestParam Long speechNodeId) {
 
-        if(speechNodeId == null || speechNodeId < 0L){
+        if (speechNodeId == null || speechNodeId < 0L) {
 
-            return R.error(400,"请求参数错误");
+            return R.error(HttpStatus.SC_BAD_REQUEST, "请求参数错误");
         }
 
         BizSpeechInfoEntity bizSpeechInfo = new BizSpeechInfoEntity();
